@@ -1,11 +1,27 @@
 import React ,{Component} from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+//import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
 import axios from 'axios';
-import { AxiosProvider, Request, Get, Delete, Head, Post, Put, Patch, withAxios } from 'react-axios';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import FieldGroup from './FieldGroup';
+import {Button} from 'react-bootstrap';
+
+
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+const styl = {
+  root: {
+    width: '100%',
+    }
+    //backgroundImage: `url(${background})`
+};
+
+const appbar = {
+  backgroundColor:'#0080FF'
+}
+
 
 class Login extends React.Component {
 constructor(props){
@@ -55,33 +71,84 @@ constructor(props){
 
 render() {
     return (
-      <div>
-        <MuiThemeProvider>
-          <div>
-          <AppBar
-             title="Login"
-           />
-           <TextField
-             hintText="Enter your Username"
-             floatingLabelText="Username"
-             onChange = {(event,newValue) => this.setState({username:newValue})}
-             />
-           <br/>
-             <TextField
-               type="password"
-               hintText="Enter your Password"
-               floatingLabelText="Password"
-               onChange = {(event,newValue) => this.setState({password:newValue})}
-               />
-             <br/>
-             <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
-         </div>
-         </MuiThemeProvider>
+      <div color="primary" style={styl}>
+            <AppBar position="static" style={appbar}>
+              <Toolbar>
+                  <Typography type="title" color="inherit">
+                    Login
+                  </Typography>
+              </Toolbar>
+            </AppBar>
+          <div style={style}>
+          <form  >
+          
+          <FieldGroup
+                  style={input}
+                  id="formControlsText"
+                  type="text"
+                  placeholder="Username"
+                  onChange = {(event,newValue) => this.setState({username:newValue})}
+              />
+          <FieldGroup 
+            style={input}
+            id="formControlsPassword"  
+            type="password"
+            placeholder="Password"
+            onChange = {(event,newValue) => this.setState({password:newValue})}
+          />
+
+             <Button style={button} bsStyle="primary" 
+                 onClick={(event) => this.handleClick(event)}>
+                Submit</Button>
+            </form>
+            </div>
       </div>
     );
   }
 }
 const style = {
- margin: 15,
+ color:"inherit",
+ justifyContent: "center",
+ alignItems: "center",
+marginTop:'5%',
+ marginBottom:'3%',
+ borderRadius:'15%',
+ backgroundColor:'#2196F3',
+ width:'30%',
+ marginLeft:'35%',
+ paddingTop:70,
+ paddingBottom:70,
+ //backgroundImage: `url(${background})`
+ //marginRight:'80%'
+
+ 
+ /*position: absolute,
+  top: '50%',
+  left: '50%',
+  transform: translate('-50%' , '-50%'),
+  //border-radius: 5px*/
+
 };
+const styles= {
+  margin:30,
+  //backgroundColor:'white',
+  color:'#0080FF',
+  height:40,
+  width:'15%'
+
+};
+const input = {
+  backgroundColor:'white',
+  marginTop:20,
+  height:20
+
+}
+const button = {
+  backgroundColor:'white',
+  marginTop:20,
+  width:'20%',
+  height:30,
+  color:'#0080FF'
+} 
+
 export default Login;

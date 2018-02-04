@@ -1,9 +1,12 @@
 
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from 'material-ui/Button';
 import Login from './Login';
 import Register from './Register';
+import AppBar from 'material-ui/AppBar';
+import logo from './logocoud.jpg';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
 class Loginscreen extends Component {
   constructor(props){
     super(props);
@@ -59,17 +62,31 @@ class Loginscreen extends Component {
         {this.state.loginscreen}
         <div>
           {this.state.loginmessage}
-          <MuiThemeProvider>
             <div>
-               <RaisedButton label={this.state.buttonLabel} primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
+               <Button raised color="primary" 
+               className='classes.button'  style={style} onClick={(event) => this.handleClick(event)}>
+               {this.state.buttonLabel}</Button>
            </div>
-          </MuiThemeProvider>
         </div>
+        <AppBar position="static" style={appbar}>
+              <Toolbar>
+                  <Typography type="title" >
+                    CODIFICATION-COUD-ESP
+                  </Typography>
+              </Toolbar>
+            </AppBar>
       </div>
     );
   }
 }
 const style = {
   margin: 15,
+  backgroundColor:'#0080FF'
 };
+const appbar = {
+  backgroundColor:'#0080FF',
+  //backgroundImage:`url(${logo})`,
+  color:'white',
+  height:140                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+}
 export default Loginscreen;

@@ -1,12 +1,17 @@
 
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import Login from './Login';
+import PropTypes from 'prop-types';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import FieldGroup from './FieldGroup';
+import {Button, FormGroup, Form} from 'react-bootstrap';
+import {ControlLabel,FormControl,HelpBlock} from 'react-bootstrap';
+import HorizontalStepper from './HorizontalStepper';
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 class Register extends Component {
   constructor(props){
     super(props);
@@ -16,20 +21,30 @@ class Register extends Component {
       numEtudiant:'',
       numCIN:'',
       sexe:'',
-      dateNaiss:'',
+      dateNaiss:new Date().toISOString(),
       villeNaiss:'',
       departement:'',
       formation:'',
       niveau:'',
       username:'',
       email:'',
-      password:''
+      password:'',
+      telephone:''
 
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleSelect =  this.handleSelect.bind(this);
   }
-  handleClick(event){
-    var apiBaseUrl = "http://localhost:8080/api/";
+
+  handleInput(event,value,prop) {
+    this.setState( {prop:value});
+  };
+  handleSelect(event,prop) {
+    this.setState(prop:event.target.value);
+  }
+  handleClick(){
+    /*var apiBaseUrl = "http://localhost:8080/api/";
     
     //To be done:check for empty values before hitting submit
    var self = this;
@@ -84,59 +99,60 @@ class Register extends Component {
   .catch(function (error) {
      console.log(error);
    });*/
+
+   console.log("Registration succesfull");
     
 
   }
   render() {
+    
+    const { classes } = this.props;
     return (
-      <div>
-        <MuiThemeProvider>
-          <div>
-          <AppBar
-             title="Register"
-           />
-           <TextField
-             hintText="Entrez votre prénom"
-             floatingLabelText="First Name"
-             onChange = {(event,newValue) => this.setState({prenom:newValue})}
-             />
-           <br/>
-           <TextField
-             hintText="Entrez votre nom"
-             floatingLabelText="Last Name"
-             onChange = {(event,newValue) => this.setState({nom:newValue})}
-             />
-           <br/>
-           
-           <br/>
-           <TextField
-             hintText="Entrez votre username"
-             floatingLabelText="Username"
-             onChange = {(event,newValue) => this.setState({username:newValue})}
-             />
-           <br/>
-           <TextField
-             hintText="Enter your Email"
-             type="email"
-             floatingLabelText="Email"
-             onChange = {(event,newValue) => this.setState({email:newValue})}
-             />
-           <br/>
-           <TextField
-             type = "password"
-             hintText="Enter your Password"
-             floatingLabelText="Password"
-             onChange = {(event,newValue) => this.setState({password:newValue})}
-             />
-           <br/>
-           <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
-          </div>
-         </MuiThemeProvider>
-      </div>
+      <HorizontalStepper 
+            handleInput={this.handleInput}
+            handleSelect={this.handleSelect}
+            handleClick={this.handleClick}
+            parentstate={this.state}
+      />
     );
   }
 }
-const style = {
-  margin: 15,
+const div = {
+  color:"inherit",
+ justifyContent: "center",
+ alignItems: "center",
+ marginTop:10,
+ borderRadius:10,
+ backgroundColor:'#2196F3',
+ width:'30%',
+ heigth:'10%',
+ marginLeft:'35%',
+ //paddingTop:30,
+ paddingBottom:30
 };
+
+const select = {
+  marginLeft:'10%',
+  margin:10,
+  width:'25%',
+  heigth:'50%',
+  backgroundColor:'white'
+};
+const appbar = {
+  backgroundColor:'#2196F3'
+}
+
+const input = {
+  backgroundColor:'white',
+  marginTop:20
+
+};
+const styles= {
+  margin:15,
+  backgroundColor:'white',
+  color:'#0080FF'
+
+};
+
+
 export default Register;

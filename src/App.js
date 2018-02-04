@@ -5,6 +5,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 // http://stackoverflow.com/a/34015469/988941
 import './App.css';
 import Loginscreen from './Loginscreen';
+import background from './background.jpg';
 injectTapEventPlugin();
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
